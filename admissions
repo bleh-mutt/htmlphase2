@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amrita Admissions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding-top: 80px; /* Adjust based on your main header height */
+      background-color: #f9f9f9;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Ensure footer stays at bottom */
+    }
+
+    /* --- Header Styles (Copied for consistency) --- */
+    .static-header-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(181, 22, 78, 1);
+      z-index: 10000;
+      padding: 10px 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .static-header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .static-header-logo img {
+      height: 50px;
+      width: auto;
+    }
+
+    .static-header-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 30px;
+    }
+
+    .static-header-nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: color 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    .static-header-nav a:hover {
+      color: #ffccdd;
+    }
+    /* --- End Header Styles --- */
+
+    /* --- Admissions Forms Section --- */
+    #admissions-forms-section {
+        display: block; /* Initially visible */
+        flex-grow: 1; /* Allows it to take up space */
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .admissions-content h2 {
+      color: #b5164e;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.2em;
+    }
+    .form-section {
+      margin-bottom: 40px;
+      padding: 25px;
+      border: 1px solid #eee;
+      border-radius: 6px;
+      background-color: #fdfdfd;
+    }
+    .form-section h3 {
+      color: #b5164e;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 1.6em;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 10px;
+    }
+    .form-group { margin-bottom: 15px; }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #555;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group select,
+    .form-group textarea {
+      width: calc(100% - 22px);
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1em;
+      box-sizing: border-box;
+    }
+    .form-group button {
+      background-color: #b5164e;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1em;
+      transition: background-color 0.3s ease;
+      display: block;
+      width: fit-content;
+      margin-top: 20px;
+    }
+    .form-group button:hover { background-color: #9e1442; }
+
+    /* --- Thank You Message Section --- */
+    #thank-you-message-section {
+      display: none; /* Hidden by default */
+      flex-grow: 1; /* Allows it to take up space */
+      display: flex; /* Use flex to center content */
+      align-items: center;
+      justify-content: center;
+      padding: 20px; /* Add padding for smaller screens */
+    }
+
+    .illustrious-message-container {
+        background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        padding: 50px 30px;
+        text-align: center;
+        max-width: 600px;
+        width: 90%;
+        margin: auto;
+        transform: translateY(20px);
+        opacity: 0;
+        animation: fadeInScale 0.8s forwards ease-out;
+    }
+
+    .icon-wrapper { margin-bottom: 30px; }
+    .icon-wrapper .fas.fa-check-circle {
+        font-size: 6em;
+        color: #4CAF50;
+        animation: bounceIn 0.8s forwards cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    .illustrious-message-container h2 {
+        color: #b5164e;
+        font-size: 2.8em;
+        margin-bottom: 15px;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+    }
+    .illustrious-message-container p {
+        font-size: 1.2em;
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 30px;
+    }
+    .illustrious-message-container .action-button {
+        background-color: #b5164e;
+        color: white;
+        padding: 15px 35px;
+        border: none;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 1.2em;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        display: inline-block;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+    .illustrious-message-container .action-button:hover {
+        background-color: #9e1442;
+        transform: translateY(-3px);
+    }
+
+    /* --- Animations (for thank you message) --- */
+    @keyframes fadeInScale {
+        from { opacity: 0; transform: translateY(50px) scale(0.9); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes bounceIn {
+        0% { transform: scale(0.1); opacity: 0; }
+        60% { transform: scale(1.2); opacity: 1; }
+        100% { transform: scale(1); }
+    }
+
+    /* --- Footer --- */
+    footer {
+      background: rgba(181,22,78,255);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      margin-top: auto; /* Pushes footer to the bottom */
+    }
+  </style>
+</head>
+<body>
+  <header class="static-header-wrapper">
+    <div class="static-header-content">
+      <div class="static-header-logo">
+        <a href="index.html">
+          <img src="https://amritatec.in/images/amrita1.jpg" alt="Amrita Logo">
+        </a>
+      </div>
+      <nav class="static-header-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="admissions.html">Admissions</a></li>
+          <li><a href="#">Academics</a></li>
+          <li><a href="#">Research</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div id="admissions-forms-section">
+    <div class="admissions-content">
+      <h2>Admissions</h2>
+
+      <div class="form-section">
+        <h3>Undergraduate Admissions Inquiry</h3>
+        <form id="ug-form" method="POST">
+          <div class="form-group">
+            <label for="ug_name">Full Name:</label>
+            <input type="text" id="ug_name" name="ug_name" required>
+          </div>
+          <div class="form-group">
+            <label for="ug_email">Email Address:</label>
+            <input type="email" id="ug_email" name="ug_email" required>
+          </div>
+          <div class="form-group">
+            <label for="ug_phone">Phone Number:</label>
+            <input type="text" id="ug_phone" name="ug_phone">
+          </div>
+          <div class="form-group">
+            <label for="ug_program">Program of Interest:</label>
+            <select id="ug_program" name="ug_program" required>
+              <option value="">Select a Program</option>
+              <option value="btech">B.Tech</option>
+              <option value="bsc">B.Sc</option>
+              <option value="bcom">B.Com</option>
+              <option value="bca">BCA</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="ug_message">Your Message (Optional):</label>
+            <textarea id="ug_message" name="ug_message" rows="5"></textarea>
+          </div>
+          <button type="submit">Submit Inquiry</button>
+        </form>
+      </div>
+
+      <div class="form-section">
+        <h3>Postgraduate Admissions Inquiry</h3>
+        <form id="pg-form" method="POST">
+          <div class="form-group">
+            <label for="pg_name">Full Name:</label>
+            <input type="text" id="pg_name" name="pg_name" required>
+          </div>
+          <div class="form-group">
+            <label for="pg_email">Email Address:</label>
+            <input type="email" id="pg_email" name="pg_email" required>
+          </div>
+          <div class="form-group">
+            <label for="pg_phone">Phone Number:</label>
+            <input type="text" id="pg_phone" name="pg_phone">
+          </div>
+          <div class="form-group">
+            <label for="pg_program">Program of Interest:</label>
+            <select id="pg_program" name="pg_program" required>
+              <option value="">Select a Program</option>
+              <option value="mtech">M.Tech</option>
+              <option value="mba">MBA</option>
+              <option value="mca">MCA</option>
+              <option value="phd">Ph.D</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="pg_qualification">Highest Qualification:</label>
+            <input type="text" id="pg_qualification" name="pg_qualification">
+          </div>
+          <button type="submit">Submit Inquiry</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="thank-you-message-section">
+    <div class="illustrious-message-container">
+        <div class="icon-wrapper">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h2>Inquiry Submitted Successfully!</h2>
+        <p>Thank you for your interest in Amrita University. Your admissions inquiry has been received, and we're excited to learn more about you.</p>
+        <p> Our admissions team will review your details and get back to you as soon as possible.</p>
+        <a href="index.html" class="action-button">Return to Home Page</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Noel Muttath. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Get references to the sections
+    const admissionsFormsSection = document.getElementById('admissions-forms-section');
+    const thankYouMessageSection = document.getElementById('thank-you-message-section');
+
+    // Get references to the forms
+    const ugForm = document.getElementById('ug-form');
+    const pgForm = document.getElementById('pg-form');
+
+    // Add event listeners for form submissions
+    ugForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        // In a real application, you'd send this data to a server
+        // after which, on success, you'd call showThankYouMessage();
+        console.log('Undergraduate form submitted (simulated)');
+        showThankYouMessage();
+    });
+
+    pgForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        // In a real application, you'd send this data to a server
+        // after which, on success, you'd call showThankYouMessage();
+        console.log('Postgraduate form submitted (simulated)');
+        showThankYouMessage();
+    });
+
+    function showThankYouMessage() {
+        admissionsFormsSection.style.display = 'none'; // Hide the forms
+        thankYouMessageSection.style.display = 'flex'; // Show the thank you message
+        window.scrollTo(0, 0); // Scroll to top
+    }
+  </script>
+</body>
+</html>
