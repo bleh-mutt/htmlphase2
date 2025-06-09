@@ -239,7 +239,7 @@
 
       <div class="form-section">
         <h3>Undergraduate Admissions Inquiry</h3>
-        <form id="ug-form" action="process_admissions.php" method="POST">
+        <form id="ug-form" method="POST">
           <input type="hidden" name="form_type" value="undergraduate">
           <div class="form-group">
             <label for="ug_name">Full Name:</label>
@@ -273,7 +273,7 @@
 
       <div class="form-section">
         <h3>Postgraduate Admissions Inquiry</h3>
-        <form id="pg-form" action="process_admissions.php" method="POST">
+        <form id="pg-form" method="POST">
           <input type="hidden" name="form_type" value="postgraduate">
           <div class="form-group">
             <label for="pg_name">Full Name:</label>
@@ -313,9 +313,9 @@
             <i class="fas fa-check-circle"></i>
         </div>
         <h2>Inquiry Submitted Successfully!</h2>
-        <p>Thank you for your interest in Amrita University. Your admissions inquiry has been received, and we're excited to learn more about you.</p>
-        <p>You should receive a confirmation email and/or SMS shortly.</p>
-        <p>Our admissions team will review your details and get back to you as soon as possible.</p>
+        <p>Thank you for your interest in Amrita University. Your admissions inquiry has been received.</p>
+        <p><strong>Note: This is a demonstration. No actual email or SMS has been sent, and your data has not been stored.</strong></p>
+        <p>Our admissions team would normally review your details and get back to you as soon as possible.</p>
         <a href="index.html" class="action-button">Return to Home Page</a>
     </div>
   </div>
@@ -325,10 +325,36 @@
   </footer>
 
   <script>
-    // This script remains the same as before, handling the redirection after server processing.
-    // The server-side script (process_admissions.php) is responsible for redirecting
-    // to thank_you.html.
-    // This admissions.html simply submits the form.
+    // Get references to the sections
+    const admissionsFormsSection = document.getElementById('admissions-forms-section');
+    const thankYouMessageSection = document.getElementById('thank-you-message-section');
+
+    // Get references to the forms
+    const ugForm = document.getElementById('ug-form');
+    const pgForm = document.getElementById('pg-form');
+
+    // Function to handle form submission
+    function handleFormSubmission(event) {
+        event.preventDefault(); // Prevent default form submission (which would try to send to a server)
+
+        // You can collect form data here if needed, but it won't be sent anywhere.
+        // For example:
+        // const formData = new FormData(event.target);
+        // console.log("Form submitted data:", Object.fromEntries(formData.entries()));
+
+        // Hide the forms section
+        admissionsFormsSection.style.display = 'none';
+
+        // Show the thank you message section
+        thankYouMessageSection.style.display = 'flex'; // Use 'flex' because of align-items/justify-content for centering
+
+        // Scroll to the top of the page for a better user experience
+        window.scrollTo(0, 0);
+    }
+
+    // Add event listeners for form submissions
+    ugForm.addEventListener('submit', handleFormSubmission);
+    pgForm.addEventListener('submit', handleFormSubmission);
   </script>
 </body>
 </html>
