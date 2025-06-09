@@ -65,9 +65,8 @@
     }
     /* --- End Header Styles --- */
 
-    /* --- Admissions Forms Section --- */
+    /* --- Admissions Forms Section (will be shown by default) --- */
     #admissions-forms-section {
-        display: block; /* Initially visible */
         flex-grow: 1; /* Allows it to take up space */
         max-width: 900px;
         margin: 40px auto;
@@ -133,11 +132,10 @@
 
     /* --- Thank You Message Section --- */
     #thank-you-message-section {
-      display: none; /* Hidden by default */
+      display: none; /* KEY FIX: Hidden by default */
       flex-grow: 1; /* Allows it to take up space */
-      display: flex; /* Use flex to center content */
-      align-items: center;
-      justify-content: center;
+      align-items: center; /* Used with flex for centering */
+      justify-content: center; /* Used with flex for centering */
       padding: 20px; /* Add padding for smaller screens */
     }
 
@@ -237,36 +235,37 @@
 
   <div id="admissions-forms-section">
     <div class="admissions-content">
-      <h2>Admissions</h2>
+      <h2>Admissions Inquiry</h2>
 
       <div class="form-section">
         <h3>Undergraduate Admissions Inquiry</h3>
-        <form id="ug-form" method="POST">
+        <form id="ug-form" action="process_admissions.php" method="POST">
+          <input type="hidden" name="form_type" value="undergraduate">
           <div class="form-group">
             <label for="ug_name">Full Name:</label>
-            <input type="text" id="ug_name" name="ug_name" required>
+            <input type="text" id="ug_name" name="name" required>
           </div>
           <div class="form-group">
             <label for="ug_email">Email Address:</label>
-            <input type="email" id="ug_email" name="ug_email" required>
+            <input type="email" id="ug_email" name="email" required>
           </div>
           <div class="form-group">
             <label for="ug_phone">Phone Number:</label>
-            <input type="text" id="ug_phone" name="ug_phone">
+            <input type="text" id="ug_phone" name="phone">
           </div>
           <div class="form-group">
             <label for="ug_program">Program of Interest:</label>
-            <select id="ug_program" name="ug_program" required>
+            <select id="ug_program" name="program" required>
               <option value="">Select a Program</option>
-              <option value="btech">B.Tech</option>
-              <option value="bsc">B.Sc</option>
-              <option value="bcom">B.Com</option>
-              <option value="bca">BCA</option>
+              <option value="B.Tech">B.Tech</option>
+              <option value="B.Sc">B.Sc</option>
+              <option value="B.Com">B.Com</option>
+              <option value="BCA">BCA</option>
             </select>
           </div>
           <div class="form-group">
             <label for="ug_message">Your Message (Optional):</label>
-            <textarea id="ug_message" name="ug_message" rows="5"></textarea>
+            <textarea id="ug_message" name="message" rows="5"></textarea>
           </div>
           <button type="submit">Submit Inquiry</button>
         </form>
@@ -274,32 +273,33 @@
 
       <div class="form-section">
         <h3>Postgraduate Admissions Inquiry</h3>
-        <form id="pg-form" method="POST">
+        <form id="pg-form" action="process_admissions.php" method="POST">
+          <input type="hidden" name="form_type" value="postgraduate">
           <div class="form-group">
             <label for="pg_name">Full Name:</label>
-            <input type="text" id="pg_name" name="pg_name" required>
+            <input type="text" id="pg_name" name="name" required>
           </div>
           <div class="form-group">
             <label for="pg_email">Email Address:</label>
-            <input type="email" id="pg_email" name="pg_email" required>
+            <input type="email" id="pg_email" name="email" required>
           </div>
           <div class="form-group">
             <label for="pg_phone">Phone Number:</label>
-            <input type="text" id="pg_phone" name="pg_phone">
+            <input type="text" id="pg_phone" name="phone">
           </div>
           <div class="form-group">
             <label for="pg_program">Program of Interest:</label>
-            <select id="pg_program" name="pg_program" required>
+            <select id="pg_program" name="program" required>
               <option value="">Select a Program</option>
-              <option value="mtech">M.Tech</option>
-              <option value="mba">MBA</option>
-              <option value="mca">MCA</option>
-              <option value="phd">Ph.D</option>
+              <option value="M.Tech">M.Tech</option>
+              <option value="MBA">MBA</option>
+              <option value="MCA">MCA</option>
+              <option value="Ph.D">Ph.D</option>
             </select>
           </div>
           <div class="form-group">
             <label for="pg_qualification">Highest Qualification:</label>
-            <input type="text" id="pg_qualification" name="pg_qualification">
+            <input type="text" id="pg_qualification" name="qualification">
           </div>
           <button type="submit">Submit Inquiry</button>
         </form>
@@ -314,7 +314,8 @@
         </div>
         <h2>Inquiry Submitted Successfully!</h2>
         <p>Thank you for your interest in Amrita University. Your admissions inquiry has been received, and we're excited to learn more about you.</p>
-        <p> Our admissions team will review your details and get back to you as soon as possible.</p>
+        <p>You should receive a confirmation email and/or SMS shortly.</p>
+        <p>Our admissions team will review your details and get back to you as soon as possible.</p>
         <a href="index.html" class="action-button">Return to Home Page</a>
     </div>
   </div>
@@ -324,36 +325,10 @@
   </footer>
 
   <script>
-    // Get references to the sections
-    const admissionsFormsSection = document.getElementById('admissions-forms-section');
-    const thankYouMessageSection = document.getElementById('thank-you-message-section');
-
-    // Get references to the forms
-    const ugForm = document.getElementById('ug-form');
-    const pgForm = document.getElementById('pg-form');
-
-    // Add event listeners for form submissions
-    ugForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
-        // In a real application, you'd send this data to a server
-        // after which, on success, you'd call showThankYouMessage();
-        console.log('Undergraduate form submitted (simulated)');
-        showThankYouMessage();
-    });
-
-    pgForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
-        // In a real application, you'd send this data to a server
-        // after which, on success, you'd call showThankYouMessage();
-        console.log('Postgraduate form submitted (simulated)');
-        showThankYouMessage();
-    });
-
-    function showThankYouMessage() {
-        admissionsFormsSection.style.display = 'none'; // Hide the forms
-        thankYouMessageSection.style.display = 'flex'; // Show the thank you message
-        window.scrollTo(0, 0); // Scroll to top
-    }
+    // This script remains the same as before, handling the redirection after server processing.
+    // The server-side script (process_admissions.php) is responsible for redirecting
+    // to thank_you.html.
+    // This admissions.html simply submits the form.
   </script>
 </body>
 </html>
