@@ -3,14 +3,154 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, content=height initial-scale=1.0"/>
-  <title>Scroll Parallax Pin Zoom</title>
+  <title>Amrita Vishwa Vidyapeetham</title>
+  <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Amrita_Vishwa_Vidyapeetham_-_Logo_Icon.svg/1200px-Amrita_Vishwa_Vidyapeetham_-_Logo_Icon.svg.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
+    html{
+      scroll-behavior: smooth;
+    }
     body {
       margin: 0;
-      font-family: sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #111;
       color: white;
     }
+
+    /* Dropdown container */
+
+    .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 10px 15px;
+    transition: background 0.3s ease;
+  }
+  
+  .dropdown-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(181, 22, 78, 1);
+    padding: 10px 0;
+    min-width: 150px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 9999;
+    border-radius: 4px;
+  
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .dropdown-menu a {
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.3s ease;
+  }
+  
+  .dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 10px 15px;
+    transition: background 0.3s ease;
+  }
+  
+  .dropdown-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(181, 22, 78, 1);
+    padding: 10px 0;
+    min-width: 150px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 9999;
+    border-radius: 4px;
+  
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .dropdown-menu a {
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.3s ease;
+  }
+  
+  .dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  
+
+    .hero-image {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: auto;
+    max-width: 80vw; /* Adjust width */
+    max-height: 80vh; /* Adjust height */
+    z-index: 1;
+    transition: opacity 0.5s ease;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
 
     section {
       height: 100vh;
@@ -134,6 +274,7 @@
       height: auto;
       display: block;
     }
+    
 
     .video-section {
       position: relative;
@@ -162,6 +303,8 @@
       text-align: center;
       padding: 20px;
       max-width: 90%;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700
     }
 
     .bg-scroll-section {
@@ -175,16 +318,32 @@
       justify-content: center;
       color: white;
       transition: background-size 0.3s ease;
+      
     }
 
-    .bg-scroll-text {
+    .bg-scroll-text{
       z-index: 1;
-      color: white;
+      color: rgb(0, 0, 0);
       font-size: 2.5rem;
       text-align: center;
       padding: 20px;
       opacity: 0;
       transform: translateY(50px);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .bg-scroll-text h1{
+      font-weight: 700;
+    }
+
+    .bg-scroll-text p{
+      font-weight: 600;
+      color: rgba(181,22,78,255);
+    }
+    
+    .bg-scroll-text a{
+      text-decoration: none;
+      color: black;
     }
 
     footer {
@@ -201,6 +360,9 @@
   </style>
 </head>
 <body>
+  <div class="hero-image">
+    <img src="C:\Users\NOEL\Downloads\Untitled.png" alt="Hero Image">
+</div>
 
   <section class="pin-section">
     <img class="zoom-img" src="https://amritatec.in/images/amrita1.jpg" alt="GTA VI Logo">
@@ -212,15 +374,30 @@
 
   <div class="header-img-wrapper">
   <div class="header-content">
-    <div class="header-left"></div>
+    <div class="header-left">
+      <div class="dropdown">
+        <button class="dropdown-toggle">Social <i class="fa-solid fa-globe"></i> </button>
+        <div class="dropdown-menu">
+          <a href="https://www.linkedin.com/company/amritacomputing/posts/?feedView=all" target="_blank"><i class="fa-brands fa-linkedin"></i>  LinkedIn</a>
+          <a href="mailto:campus@am.amrita.edu" target="_blank"><i class="fa-solid fa-envelope"></i>  Gmail</a>
+          <a href="https://www.instagram.com/amritapuricampus/?hl=en" target="_blank"><i class="fa-brands fa-instagram"></i>  Instagram</a>
+          <a href="https://www.facebook.com/amritapuricampus/" target="_blank"><i class="fa-brands fa-facebook"></i>  Facebook</a>
+          <a href="https://www.youtube.com/@AmritaUniversity" target="_blank"><i class="fa-brands fa-youtube"></i>  YouTube</a>
+          <a href="https://x.com/amritapuriuniv" target="_blank"><i class="fa-brands fa-twitter"></i>  Twitter</a>
+        </div>
+      </div>
+      
+    </div>
 
     <div class="header-center">
-      <img src="https://amritatec.in/images/amrita1.jpg" alt="Logo" class="header-img" />
+      <a href="#top">
+        <img src="https://amritatec.in/images/amrita1.jpg" alt="Logo" class="header-img" />
+      </a>
     </div>
 
     <nav class="header-right header-nav">
-      <a href="/about.html">About</a>
-      <a href="/projects.html">Projects</a>
+      <a href="about1.html">About</a>
+      <a href="admissions.html">Admissions</a>
       <a href="/contact.html">Contact</a>
     </nav>
   </div>
@@ -235,12 +412,16 @@
       Your browser does not support HTML5 video.
     </video>
     <div class="video-text reveal">
-      Experience the Next Level 🔥
+      Explore Amritapuri
     </div>
   </section>
 
-  <section class="bg-scroll-section" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Amrita_Vishwa_Vidyapeetham_Amritapuri_Campus.jpg/1200px-Amrita_Vishwa_Vidyapeetham_Amritapuri_Campus.jpg');">
-    <div class="bg-scroll-text">Explore the Streets</div>
+
+  <section class="bg-scroll-section" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Amrita_Vishwa_Vidyapeetham_Amritapuri_Campus.jpg/1200px-Amrita_Vishwa_Vidyapeetham_Amritapuri_Campus.jpg')">
+    <div class="bg-scroll-text">
+      <a href="about1.html"><h1>Besides the Backwaters</h1></a>
+      <p>The Amritapuri Campus spans over 80 acres of land in one of the most beautiful and picturesque locations along the Kerala coastline. It is currently home to numerous schools and research centers. Distinguished professors and scholars share their knowledge and experiences with the students.</p>
+    </div>
   </section>
 
   <section class="bg-scroll-section" style="background-image: url('https://images.unsplash.com/photo-1508051123996-69f8caf4891d');">
@@ -252,11 +433,12 @@
   </section>
 
   <footer>
-        <p>&copy; 2025 Noel Muttath. All Rights Reserved.</p>
+        <p>&copy; 2026 Amrita Vishwa Vidyapeetham | All Rights Reserved</p>
     </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
 
   <script>
     gsap.registerPlugin(ScrollTrigger);
@@ -339,7 +521,7 @@
     ScrollTrigger.create({
       trigger: ".pin-section",
       start: "top top",
-      end: "+=2000",
+      end: "+=1000",
       onLeave: () => {
         document.querySelector(".header-img-wrapper").style.transform = "translateY(0)";
         document.querySelector(".header-img-wrapper").style.opacity = "1";
@@ -350,5 +532,19 @@
       }
     });
   </script>
+  <script>
+    window.addEventListener('scroll', function() {
+        const heroImage = document.querySelector('.hero-image');
+        const scrollPosition = window.scrollY;
+        
+        // Adjust fade speed by changing '500'
+        const opacity = 1 - (scrollPosition / 500);
+        
+        // Make sure opacity stays between 0 and 1
+        heroImage.style.opacity = Math.max(0, Math.min(1, opacity));
+    });
+    </script>
+  
+  
 </body>
 </html>
