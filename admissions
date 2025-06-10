@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Amrita Admissions</title>
+  <title>Admissions | Amrita</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Amrita_Vishwa_Vidyapeetham_-_Logo_Icon.svg/1200px-Amrita_Vishwa_Vidyapeetham_-_Logo_Icon.svg.png">
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -18,53 +19,122 @@
     }
 
     /* --- Header Styles (Copied for consistency) --- */
-    .static-header-wrapper {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(181, 22, 78, 1);
-      z-index: 10000;
-      padding: 10px 0;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-
-    .static-header-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .static-header-logo img {
-      height: 50px;
-      width: auto;
-    }
-
-    .static-header-nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 30px;
-    }
-
-    .static-header-nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      white-space: nowrap;
-      transition: color 0.3s ease;
-      font-size: 1.1rem;
-    }
-
-    .static-header-nav a:hover {
-      color: #ffccdd;
-    }
+    .header-img-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 0;
+    background: rgba(181, 22, 78, 1);
+    z-index: 9999;
+    /* Remove or change these lines */
+    transform: translateY(0); /* Changed from -100% */
+    opacity: 1; /* Changed from 0 */
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+  
+  .header-content {
+    position: relative;
+    max-width: 1200px; /* Optional: limit total width */
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .header-left {
+    flex: 1;
+  }
+  
+  .header-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .header-img {
+    height: 50px;
+    width: auto;
+    max-width: 200px;
+  }
+  
+  .header-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .header-nav a {
+    margin-left: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap; /* Prevent wrapping */
+    transition: color 0.3s ease;
+  }
+  
+  .header-nav a:hover {
+    color: #ffccdd;
+  }
     /* --- End Header Styles --- */
-
+  
+    .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 10px 15px;
+    transition: background 0.3s ease;
+  }
+  
+  .dropdown-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(181, 22, 78, 1);
+    padding: 10px 0;
+    min-width: 150px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 9999;
+    border-radius: 4px;
+  
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .dropdown-menu a {
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.3s ease;
+  }
+  
+  .dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  
     /* --- Admissions Forms Section (will be shown by default) --- */
     #admissions-forms-section {
         flex-grow: 1; /* Allows it to take up space */
@@ -213,25 +283,35 @@
   </style>
 </head>
 <body>
-  <header class="static-header-wrapper">
-    <div class="static-header-content">
-      <div class="static-header-logo">
-        <a href="index.html">
-          <img src="https://amritatec.in/images/amrita1.jpg" alt="Amrita Logo">
-        </a>
+    <div class="header-img-wrapper">
+        <div class="header-content">
+          <div class="header-left">
+            <div class="dropdown">
+                <button class="dropdown-toggle">Social <i class="fa-solid fa-globe"></i> </button>
+                <div class="dropdown-menu">
+                  <a href="https://www.linkedin.com/company/amritacomputing/posts/?feedView=all" target="_blank"><i class="fa-brands fa-linkedin"></i>  LinkedIn</a>
+                  <a href="mailto:campus@am.amrita.edu" target="_blank"><i class="fa-solid fa-envelope"></i>  Gmail</a>
+                  <a href="https://www.instagram.com/amritapuricampus/?hl=en" target="_blank"><i class="fa-brands fa-instagram"></i>  Instagram</a>
+                  <a href="https://www.facebook.com/amritapuricampus/" target="_blank"><i class="fa-brands fa-facebook"></i>  Facebook</a>
+                  <a href="https://www.youtube.com/@AmritaUniversity" target="_blank"><i class="fa-brands fa-youtube"></i>  YouTube</a>
+                  <a href="https://x.com/amritapuriuniv" target="_blank"><i class="fa-brands fa-twitter"></i>  Twitter</a>
+                </div>
+              </div>
+          </div>
+      
+          <div class="header-center">
+            <a href="edited.html">
+              <img src="https://amritatec.in/images/amrita1.jpg" alt="Logo" class="header-img" />
+            </a>
+          </div>
+      
+          <nav class="header-right header-nav">
+            <a href="about1.html">About</a>
+            <a href="admissions.html">Admissions</a>
+            <a href="/contact.html">Contact</a>
+          </nav>
+        </div>
       </div>
-      <nav class="static-header-nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="admissions.html">Admissions</a></li>
-          <li><a href="#">Academics</a></li>
-          <li><a href="#">Research</a></li>
-          <li><a href="#">Contact Us</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
 
   <div id="admissions-forms-section">
     <div class="admissions-content">
@@ -316,12 +396,12 @@
         <p>Thank you for your interest in Amrita University. Your admissions inquiry has been received.</p>
         <p><strong>Note: This is a demonstration. No actual email or SMS has been sent, and your data has not been stored.</strong></p>
         <p>Our admissions team would normally review your details and get back to you as soon as possible.</p>
-        <a href="index.html" class="action-button">Return to Home Page</a>
+        <a href="edited.html" class="action-button">Return to Home Page</a>
     </div>
   </div>
 
   <footer>
-    <p>&copy; 2025 Noel Muttath. All Rights Reserved.</p>
+    <p>&copy; 2026 Amrita Vishwa Vidyapeetham | All Rights Reserved</p>
   </footer>
 
   <script>
