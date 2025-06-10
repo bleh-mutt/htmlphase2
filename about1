@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us | Amrita</title>
+  <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Amrita_Vishwa_Vidyapeetham_-_Logo_Icon.svg/1200px-Amrita_Vishwa_Vidyapeetham_-_Logo_Icon.svg.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --primary: #b5164e; /* from rgba(181,22,78,255) */
+      --primary-light: #e03c6d;
+    }
+
+    .header-img-wrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 0;
+    background: rgba(181, 22, 78, 1);
+    z-index: 9999;
+    /* Remove or change these lines */
+    transform: translateY(0); /* Changed from -100% */
+    opacity: 1; /* Changed from 0 */
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+  
+  .header-content {
+    position: relative;
+    max-width: 1200px; /* Optional: limit total width */
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .header-left {
+    flex: 1;
+  }
+  
+  .header-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .header-img {
+    height: 50px;
+    width: auto;
+    max-width: 200px;
+  }
+  
+  .header-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .header-nav a {
+    margin-left: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap; /* Prevent wrapping */
+    transition: color 0.3s ease;
+  }
+  
+  .header-nav a:hover {
+    color: #ffccdd;
+  }
+    /* --- End Header Styles --- */
+  
+    .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 10px 15px;
+    transition: background 0.3s ease;
+  }
+  
+  .dropdown-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(181, 22, 78, 1);
+    padding: 10px 0;
+    min-width: 150px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 9999;
+    border-radius: 4px;
+  
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .dropdown-menu a {
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.3s ease;
+  }
+  
+  .dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    section {
+      margin-bottom: 50px;
+      background: #fff;
+      border-left: 10px solid var(--primary);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    section.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-content {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .section-content img {
+      flex: 1 1 300px;
+      max-width: 500px;
+      height: 300px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .text {
+      flex: 1 1 400px;
+      padding: 20px;
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    footer {
+      background-color: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      margin-top: 40px;
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: none;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+      transition: opacity 0.4s ease;
+    }
+
+    #backToTop:hover {
+      background-color: #880037;
+    }
+
+    @media (max-width: 768px) {
+      .section-content {
+        flex-direction: column;
+      }
+
+      header h1 {
+        font-size: 2em;
+      }
+
+      .section-content img,
+      .text {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- <header>
+    <h1>AMRITA VISHWA VIDYAPEETHAM</h1>
+    <p>Since 1994</p>
+  </header> -->
+  <div class="header-img-wrapper">
+    <div class="header-content">
+      <div class="header-left">
+        <div class="dropdown">
+            <button class="dropdown-toggle">Social <i class="fa-solid fa-globe"></i> </button>
+            <div class="dropdown-menu">
+              <a href="https://www.linkedin.com/company/amritacomputing/posts/?feedView=all" target="_blank"><i class="fa-brands fa-linkedin"></i>  LinkedIn</a>
+              <a href="mailto:campus@am.amrita.edu" target="_blank"><i class="fa-solid fa-envelope"></i>  Gmail</a>
+              <a href="https://www.instagram.com/amritapuricampus/?hl=en" target="_blank"><i class="fa-brands fa-instagram"></i>  Instagram</a>
+              <a href="https://www.facebook.com/amritapuricampus/" target="_blank"><i class="fa-brands fa-facebook"></i>  Facebook</a>
+              <a href="https://www.youtube.com/@AmritaUniversity" target="_blank"><i class="fa-brands fa-youtube"></i>  YouTube</a>
+              <a href="https://x.com/amritapuriuniv" target="_blank"><i class="fa-brands fa-twitter"></i>  Twitter</a>
+            </div>
+          </div>
+      </div>
+  
+      <div class="header-center">
+        <a href="edited.html">
+          <img src="https://amritatec.in/images/amrita1.jpg" alt="Logo" class="header-img" />
+        </a>
+      </div>
+  
+      <nav class="header-right header-nav">
+        <a href="about1.html">About</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Section 1 -->
+    <section class="hidden">
+      <div class="section-content">
+        <div class="text">
+          <h2>AMRITA VISHWA VIDYAPEETHAM</h2>
+          <p>AMRITA VISHWA VIDYAPEETHAM is a renowned institution dedicated to excellence in education, research, and innovation. Our campus is a vibrant mix of traditional values and modern facilities that support academic and personal growth.</p>
+        </div>
+        <img src="C:\Users\NOEL\Desktop\aboutpics\WhatsApp Image 2025-06-10 at 10.02.44_bca46dc6.jpg" alt="College Campus" />
+      </div>
+    </section>
+
+    <!-- Section 2 -->
+    <section class="hidden">
+      <div class="section-content">
+        <img src="C:\Users\NOEL\Desktop\aboutpics\WhatsApp Image 2025-06-10 at 10.02.46_a5a229b0.jpg" alt="Library" />
+        <div class="text">
+          <h2>Library & Knowledge Center</h2>
+          <p>Our central library houses over 50,000 books, national and international journals, and a digital archive — a peaceful haven for research and study.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3 -->
+    <section class="hidden">
+      <div class="section-content">
+        <div class="text">
+          <h2>Laboratories & Innovation Labs</h2>
+          <p>From AI to Embedded Systems, our advanced labs offer hands-on learning with real-world tools and technologies.</p>
+        </div>
+        <img src="C:\Users\NOEL\Desktop\aboutpics\WhatsApp Image 2025-06-10 at 10.02.45_6126b98f.jpg" alt="Labs" />
+      </div>
+    </section>
+
+    <!-- Section 4 -->
+    <section class="hidden">
+      <div class="section-content">
+        <img src="C:\Users\NOEL\Desktop\aboutpics\WhatsApp Image 2025-06-10 at 10.02.45_3dc4d5bc.jpg" alt="Auditorium" />
+        <div class="text">
+          <h2>Auditorium & Seminar Halls</h2>
+          <p>Modern AV-equipped auditoriums host inspiring seminars, fests, and cultural showcases every semester.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5 -->
+    <section class="hidden">
+      <div class="section-content">
+        <div class="text">
+          <h2>Sports & Fitness</h2>
+          <p>We offer sports facilities, gymnasiums, and grounds that support both recreation and competition across various disciplines.</p>
+        </div>
+        <img src="C:\Users\NOEL\Desktop\aboutpics\WhatsApp Image 2025-06-10 at 10.02.44_6dbb6e0c.jpg" alt="Sports" />
+      </div>
+    </section>
+
+    <!-- Section 6 -->
+    <section class="hidden">
+      <div class="section-content">
+        <img src="C:\Users\NOEL\Desktop\aboutpics\WhatsApp Image 2025-06-10 at 10.02.45_8b73a212.jpg" alt="Hostel" />
+        <div class="text">
+          <h2>Hostels & Cafeteria</h2>
+          <p>Our hostels are modern and comfortable. Cafeteria provides hygienic and delicious vegetarian options.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7 -->
+    <section class="hidden">
+      <div class="section-content">
+        <div class="text">
+          <h2>Clubs & Student Life</h2>
+          <p>Clubs in tech, music, photography, and literature ensure a rich and fulfilling campus experience for every student.</p>
+        </div>
+        <img src="C:\Users\NOEL\Desktop\aboutpics\WhatsApp Image 2025-06-10 at 10.02.45_ed38a952.jpg" alt="Student Life" />
+      </div>
+    </section>
+
+    <!-- Section 8 -->
+    <section class="hidden">
+      <div class="section-content">
+        <img src="C:\Users\NOEL\Desktop\aboutpics\WhatsApp Image 2025-06-10 at 10.02.45_4b4e97be.jpg" alt="Contact" />
+        <div class="text">
+          <h2>Contact Us</h2>
+          <p><strong>Address:</strong> AMRITA VISHWA VIDYAPEETHAM, Kollam, Vallikavu , India - 123456</p>
+          <p><strong>Email:</strong>campus@am.amrita.edu</p>
+          <p><strong>Phone:</strong> 0476 280 1280</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Amrita Vishwa Vidyapeetham | All Rights Reserved</p>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" title="Back to Top">↑</button>
+
+  <!-- JavaScript for animation and scroll -->
+  <script>
+    // Animate sections
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    sections.forEach(section => observer.observe(section));
+
+    // Back to top button
+    const backToTop = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+      backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+    });
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+
+</body>
+</html>
